@@ -64,7 +64,7 @@ public class OrderService {
 
             if (allProductsInStock) {
                 orderRepository.save(order);
-                // publish Order Placed Event
+                // publish Order Placed Event Kafka service
                 applicationEventPublisher.publishEvent(new OrderPlacedEvent(this, order.getOrderNumber()));
                 return "Order Placed";
             } else {
